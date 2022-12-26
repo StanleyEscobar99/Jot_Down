@@ -17,3 +17,7 @@ body {
     place-content: center;
     padding: 1rem;
 }
+
+h3 {
+    height: 20px;
+}
