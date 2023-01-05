@@ -1,6 +1,6 @@
 # Jot Down
 
-### Welcome to the Notes project! This project is a simple note-taking application that was built using the MERN (MongoDB, Express, React, and Node.js) stack.
+### Welcome to the Jot Down project! This project is a simple note-taking application that was built using the MERN (MongoDB, Express, React, and Node.js) stack.
 
 
 Getting Started
