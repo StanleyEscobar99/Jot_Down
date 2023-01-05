@@ -1,4 +1,6 @@
+// requiring express
 const express = require('express')
+// Defining router 
 const router = express.Router()
 const authController = require('../controllers/authController')
 const loginLimiter = require('../middleware/loginLimiter')

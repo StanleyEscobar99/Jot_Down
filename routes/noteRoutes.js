@@ -1,4 +1,6 @@
+// requiring express
 const express = require('express')
+// Defining router 
 const router = express.Router()
 const notesController = require('../controllers/notesController')
 const verifyJWT = require('../middleware/verifyJWT')

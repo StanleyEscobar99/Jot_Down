@@ -1,6 +1,9 @@
+//Require Mongoose 
 const mongoose = require('mongoose')
+//define autoIncrement 
 const AutoIncrement = require('mongoose-sequence')(mongoose)
 
+//This is related to Mongoose. referring to the other schema created and  say types and say Object ID. not specifically referring to that other schema here, but we're saying what type of data this is. Also I added time stamps.
 const noteSchema = new mongoose.Schema(
     {
         user: {
@@ -25,7 +28,7 @@ const noteSchema = new mongoose.Schema(
         timestamps: true
     }
 )
-
+//To keep track of of notes, Start seq so we start at 0
 noteSchema.plugin(AutoIncrement, {
     inc_field: 'note',
     id: 'noteNums',

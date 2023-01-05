@@ -1,5 +1,8 @@
+//Requiring User model 
 const User = require('../models/User')
+//Requiring Note model
 const Note = require('../models/Note')
+//require bcrypt to encrypt password
 const bcrypt = require('bcrypt')
 
 // @desc Get all users
