@@ -1,121 +1,124 @@
-````markdown
-# Jot Down
+# Secure File Encryption & Transfer — AES-256
 
-Jot Down is a full-stack note-taking application built with the MERN stack: MongoDB, Express, React, and Node.js.
+## Overview
 
-The project allows users to create, edit, organize, and delete notes through a web-based interface while demonstrating full-stack application development, API integration, database interaction, and frontend/backend architecture.
+This hands-on cybersecurity lab demonstrates how sensitive data can be protected through encryption, secure key transfer, and least-privilege access controls.
 
-## Features
+The lab used two Windows systems to simulate securely encrypting a sensitive financial report, transferring the encryption key, restricting access to that key, sending the encrypted file, and successfully decrypting it on the receiving system.
 
-- Create new notes
-- Edit existing notes
-- Delete notes
-- Save note data using MongoDB
-- Frontend built with React
-- Backend API built with Express and Node.js
-- Structured routing, controllers, middleware, and database models
+## Security Objective
 
-## Tech Stack
+The objective was to protect sensitive financial information from unauthorized disclosure while maintaining a secure method for transferring and managing the encryption key.
 
-**Frontend**
-- React
-- JavaScript
-- HTML
-- CSS
+The implementation focused on:
 
-**Backend**
-- Node.js
-- Express
+- Data confidentiality
+- Secure key management
+- Least-privilege access
+- Secure file transfer
+- Encryption and decryption verification
 
-**Database**
-- MongoDB
+## Environment & Tools
 
-**Development Tools**
-- Git
-- GitHub
-- npm
+- Windows
+- PowerShell
+- OpenSSL
+- AES-256-CBC
+- SSH / SCP
+- Thunderbird
 
-## Project Structure
+## Implementation
 
-```text
-Jot_Down/
-├── client/        # Frontend application
-├── config/        # Application configuration
-├── controllers/   # Request handling and application logic
-├── middleware/    # Custom middleware
-├── models/        # MongoDB data models
-├── public/        # Static assets
-├── routes/        # Application routes
-├── views/         # Application views
-├── server.js      # Server entry point
-└── package.json   # Dependencies and scripts
-````
+### 1. AES-256 Key Generation
 
-## Running Locally
+Generated an encryption key named `finance.key` using OpenSSL on the source Windows system.
 
-Clone the repository:
+This key was used to encrypt and later decrypt the sensitive financial report.
 
-```bash
-git clone https://github.com/StanleyEscobar99/Jot_Down.git
-```
+### 2. Secure Key Transfer
 
-Navigate into the project:
+Transferred `finance.key` from the source system to the destination system using SCP over SSH.
 
-```bash
-cd Jot_Down
-```
+Using SCP provided an encrypted channel for transferring the cryptographic key between hosts.
 
-Install dependencies:
+### 3. Least-Privilege Access Control
 
-```bash
-npm install
-```
+Configured permissions on the destination system so the intended user had read-only access to `finance.key`.
 
-Start the application:
+This demonstrated the principle of least privilege by limiting access to only what was required to complete the decryption process.
 
-```bash
-npm run dev
-```
+### 4. File Encryption
 
-## What This Project Demonstrates
+Encrypted `financialReport.xlsx` using AES-256-CBC with OpenSSL.
 
-This project demonstrates experience with:
+The resulting encrypted file was:
 
-* Full-stack web application development
-* REST-style routing
-* MongoDB data modeling
-* Server-side application logic
-* Frontend and backend integration
-* Git-based version control
-* Organizing a multi-component application
+`financialReport.xlsx.enc`
+
+The original contents could no longer be read without the appropriate encryption key.
+
+### 5. Encrypted File Transfer
+
+Sent the encrypted financial report to the intended recipient using Thunderbird.
+
+Because the file had already been encrypted, the underlying financial data remained protected during transmission.
+
+### 6. File Decryption
+
+Used `finance.key` on the destination Windows system to decrypt the encrypted report.
+
+Successful decryption verified that the correct key could restore the protected file for the authorized recipient.
+
+## Security Concepts Demonstrated
+
+### Symmetric Encryption
+AES-256 was used to protect sensitive data using a shared cryptographic key.
+
+### Key Management
+The encryption key was generated separately and transferred through a secure channel.
+
+### Least Privilege
+Access to the encryption key was restricted to the permissions required by the intended user.
+
+### Secure File Transfer
+SCP and SSH were used to securely transfer the encryption key between Windows systems.
+
+### Defense in Depth
+The workflow combined encryption, secure transport, and access controls rather than relying on a single security mechanism.
+
+## Evidence
+
+The repository contains screenshots documenting the major stages of the lab:
+
+- AES-256 key generation
+- Secure SCP key transfer
+- Key permission configuration
+- Financial report encryption
+- Encrypted file transmission
+- Successful file decryption
+
+## Skills Demonstrated
+
+- AES-256 symmetric encryption
+- OpenSSL
+- PowerShell
+- SSH / SCP
+- Secure key management
+- Windows file permissions
+- Least-privilege access control
+- Secure data handling
+- Encryption and decryption workflows
+
+## Key Takeaway
+
+This lab demonstrated that protecting sensitive information requires more than encrypting a file. The encryption key must also be securely generated, transferred, stored, and restricted to authorized users.
+
+Combining strong encryption with secure key transfer and least-privilege access provides multiple layers of protection for sensitive data.
 
 ## Author
 
-**Stanley Escobar**
-
-Cybersecurity graduate with a background in software engineering and an interest in security operations, incident response, and secure application development.
+**Stanley Escobar**  
+B.S. Cybersecurity and Information Assurance  
+Western Governors University
 
 [GitHub](https://github.com/StanleyEscobar99) | [LinkedIn](https://www.linkedin.com/in/stanley-escobar21/)
-
-```
-
-### Then update the About section
-
-Use:
-
-**Description:**  
-`Full-stack MERN note-taking application demonstrating frontend, backend, API, and database development.`
-
-**Topics:**  
-`mern`  
-`mongodb`  
-`express`  
-`react`  
-`nodejs`  
-`javascript`  
-`full-stack`
-
-Do that, then tell me **done** and we’ll review the actual files for anything sloppy or security-related before we move on.
-```
-
-Thanks for checking out the project!
