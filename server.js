@@ -49,13 +49,7 @@ app.use('/auth', require('./routes/authRoutes'))
 app.use('/users', require('./routes/userRoutes'))
 app.use('/notes', require('./routes/noteRoutes'))
 
-// App listen for the server, but here we'll just say App All now will listen for this Asterisk, which essentially means all everything that reaches it to App dot All. Will be put through this instead of being routed to anything that's above.  
-
-// First thing is put the 404 so we can get it right away. 
-
-//inside of this, of this if statement res send file and now this will basically we're going to send our 404 and of course we have to route to it correctly. After that then we go into  an else if statement, here request accepts and let's look for JSON, which would be very common, sent to a rest API. So if there's a JSON request that wasn't routed properly and didn't get stopped by any of the expected routes, this would be the response. response JSON and now inside of this we'll have a message and then will say 404 not found. the last else statement will be sent no matter what if HTML. JSON was not matched in the accept setter and here we'll say response type text is fairly safe. Just about everything can receive text and send once again our 404 not found. 
-
-//checking for all possible outcomes and we will be routing it to a 404 page if request doesn't exist
+// Handle requests that do not match an existing route
 app.all('*', (req, res) => {
     res.status(404)
     if (req.accepts('html')) {
